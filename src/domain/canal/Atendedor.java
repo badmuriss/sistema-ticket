@@ -52,7 +52,7 @@ public class Atendedor {
 
 	public void atenderTicket(Ticket ticket) {
 		
-		System.out.println("MENSAGEM: " + ticket.getMensagem());
+		System.out.println("\nMENSAGEM: " + ticket.getMensagem());
 		
 		System.out.println("\nO que deseja fazer?\n(a) Mensagem pode ser prontamente respondida, enviar resolução ao cliente\n(b) Mensagem não pode ser prontamente respondida, encaminhar para o setor responsavel\n");
 		

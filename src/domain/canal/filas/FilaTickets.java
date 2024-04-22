@@ -1,37 +1,56 @@
 package domain.canal.filas;
 
-import java.util.LinkedList;
-import java.util.List;
 import java.util.NoSuchElementException;
 
 import domain.canal.Ticket;
 
 public class FilaTickets {
 
+	
+		private class NO {
+			Ticket dado;
+			NO prox;
+		}
 		
-		List<Ticket> dados = new LinkedList<>();
-		int ini, cont;
+		NO ini, fim;
 
 		public void init() {
-			ini = cont = 0;
+			ini = fim = null;
 		}
 		
 		public boolean isEmpty() {
-			return (cont==0);
+			return (ini==null && fim==null);
 		}
 		
 		public void enqueue(Ticket elem) {
-				dados.add(elem);
-				cont++;
+				NO novo = new NO();
+				novo.dado = elem;
+				novo.prox = null;
+				if(isEmpty()) {
+					ini = novo;
+				} else {
+					fim.prox = novo;
+				}
+				
+				fim = novo;
 		
 		}
+		
+		public Ticket first() {
+			return ini.dado;
+		}
+		
 		public Ticket dequeue() {
 			if(isEmpty()) {
 				throw new NoSuchElementException("A fila está vazia");
 			}
-			Ticket elem = dados.get(0);
-			dados.remove(0);
-			cont--;
+			Ticket elem = ini.dado;
+			ini = ini.prox;
+			if(ini==null) {
+				fim=null;
+			}
+			
+			
 			return elem;
 		}
 		
